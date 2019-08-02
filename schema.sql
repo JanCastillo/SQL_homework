@@ -3,7 +3,7 @@
 
 
 CREATE TABLE "Departments" (
-    "depart_ID" INTEGER   NOT NULL,
+    "depart_ID" VARCHAR   NOT NULL,
     "depart_Name" VARCHAR   NOT NULL,
     CONSTRAINT "pk_Departments" PRIMARY KEY (
         "depart_ID"
@@ -37,7 +37,7 @@ CREATE TABLE "Employees" (
 );
 
 CREATE TABLE "Dept_Manager" (
-    "department" INTEGER   NOT NULL,
+    "department" VARCHAR   NOT NULL,
     "employee_ID" INTEGER   NOT NULL,
     "start_date" DATE   NOT NULL,
     "end_date" DATE   NOT NULL
@@ -45,15 +45,15 @@ CREATE TABLE "Dept_Manager" (
 
 CREATE TABLE "Dept_Employee" (
     "employee_ID" INTEGER   NOT NULL,
-    "department" INTEGER   NOT NULL,
+    "department" VARCHAR   NOT NULL,
     "start_date" DATE   NOT NULL,
     "end_date" DATE   NOT NULL
 );
 
-ALTER TABLE "Salaries" ADD CONSTRAINT "fk_Salaries_salary" FOREIGN KEY("salary")
+ALTER TABLE "Salaries" ADD CONSTRAINT "fk_Salaries_employee_ID" FOREIGN KEY("employee_ID")
 REFERENCES "Employees" ("employee_ID");
 
-ALTER TABLE "Titles" ADD CONSTRAINT "fk_Titles_title" FOREIGN KEY("title")
+ALTER TABLE "Titles" ADD CONSTRAINT "fk_Titles_employee_ID" FOREIGN KEY("employee_ID")
 REFERENCES "Employees" ("employee_ID");
 
 ALTER TABLE "Dept_Manager" ADD CONSTRAINT "fk_Dept_Manager_department" FOREIGN KEY("department")
